@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+  <meta charset=utf-8 />
+  <title>Draw a circle</title>
+  </head>
+  <body></body>
+</head>
+
+<!--
+Ant's suggestions
+-->
+
+<style>
+
+#container1{
+  width: 500px;
+  height: 250px;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container2{
+  width: 500px;
+  height: 250px;
+  margin: 50px;
+  outline: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#target_div{
+  width:100px;
+  height: 100px;
+  border: 5px solid red;
+  border-radius: 100px;
+}
+#response_div{
+  width:100px;
+  height: 100px;
+  border: 5px solid red;
+  border-radius: 100px;
+}
+
+#yourTable{
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin: auto;
+  width: 600px;
+  height: 600px;
+  background-color: yellow;
+}
+
+td{
+width: 200px;
+}
+
+</style>
+
+<table id="yourTable">
+  <tr>
+    <td align="center"><div id="target_div"></div></td>
+    <td></td>
+    <td align="center"><div id="response_div"></div></td>
+  </tr>
+</table>
+
+<script>
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+// shuffle(obj);
+// console.log(obj);
+
+function grow_circle(){
+  var circle_width = parseFloat(
+    $("#response_div")
+      .css("width")
+      .replace("px","")
+  );
+  circle_width += 2;
+  $("#response_div")
+    .css("width", circle_width + "px")
+    .css("height", circle_width + "px")
+    .css("border-radius", circle_width + "px")
+}
+
+function shrink_circle(){
+  var circle_width = parseFloat(
+    $("#response_div")
+      .css("width")
+      .replace("px","")
+  );
+  circle_width -= 2;
+  $("#response_div")
+    .css("width", circle_width + "px")
+    .css("height", circle_width + "px")
+    .css("border-radius", circle_width + "px")
+}
+
+response_array = [];
+var final_width;
+
+window.addEventListener("keydown", function(event) {
+	  if (event.defaultPrevented) {
+	    return;
+	  }
+    if (event.code === "ArrowLeft"){
+      shrink_circle()
+	  } else if (event.code === "ArrowRight"){
+	      // Handle "right"
+        grow_circle()
+    } else if (event.code === "Space"){
+    final_width = parseFloat(
+    $("#response_div")
+      .css("width")
+      .replace("px","")   
+  );
+    console.log("Hi")
+    console.log("final_width");
+    console.log(final_width);
+    response_array.push(final_width);
+    Phase.add_response({
+      "final_width": final_width
+    });
+    start_trial()
+	  }
+	  event.preventDefault();
+	}, true);
+
+
+  
+
+
+
+
+  data = [
+  {
+    "trial": 0,
+    "standard": 2.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 1,
+    "standard": 3.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 2,
+    "standard": 3.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 3,
+    "standard": 2.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 4,
+    "standard": 3.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 5,
+    "standard": 4.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 6,
+    "standard": 2.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 7,
+    "standard": 3.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 8,
+    "standard": 2.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 9,
+    "standard": 4.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 10,
+    "standard": 2.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 11,
+    "standard": 5.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 12,
+    "standard": 5.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 13,
+    "standard": 3.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 14,
+    "standard": 5.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 15,
+    "standard": 4.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 16,
+    "standard": 5.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 17,
+    "standard": 4.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 18,
+    "standard": 2.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 19,
+    "standard": 2.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 20,
+    "standard": 4.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 21,
+    "standard": 5.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 22,
+    "standard": 3.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 23,
+    "standard": 5.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 24,
+    "standard": 5.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 25,
+    "standard": 4.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 26,
+    "standard": 2.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 27,
+    "standard": 5.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 28,
+    "standard": 4.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 29,
+    "standard": 2.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 30,
+    "standard": 3.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 31,
+    "standard": 2.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 32,
+    "standard": 3.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 33,
+    "standard": 5.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 34,
+    "standard": 4.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 35,
+    "standard": 3.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 36,
+    "standard": 4.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 37,
+    "standard": 3.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 38,
+    "standard": 3.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 39,
+    "standard": 4.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 40,
+    "standard": 5.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 41,
+    "standard": 5.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 42,
+    "standard": 5.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 43,
+    "standard": 2.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 44,
+    "standard": 5.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 45,
+    "standard": 2.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 46,
+    "standard": 3.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 47,
+    "standard": 4.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 48,
+    "standard": 4.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 49,
+    "standard": 3.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 50,
+    "standard": 5.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 51,
+    "standard": 3.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 52,
+    "standard": 4.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 53,
+    "standard": 5.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 54,
+    "standard": 2.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 55,
+    "standard": 2.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 56,
+    "standard": 4.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 57,
+    "standard": 4.55,
+    "starting_comparison": 0.2
+  },
+  {
+    "trial": 58,
+    "standard": 3.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 59,
+    "standard": 3.55,
+    "starting_comparison": 0.1
+  },
+  {
+    "trial": 60,
+    "standard": 5.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 61,
+    "standard": 2.55,
+    "starting_comparison": -0.2
+  },
+  {
+    "trial": 62,
+    "standard": 2.55,
+    "starting_comparison": -0.1
+  },
+  {
+    "trial": 63,
+    "standard": 4.55,
+    "starting_comparison": 0.1
+  }
+];
+function start_trial(){
+  this_trial = data.pop();
+  $("#target_div")
+    .css("width", this_trial.standard + "px")
+    .css("height", this_trial.standard + "px");
+
+    $("#response_div")
+    .css("width", this_trial.standard + "px")
+    .css("height", this_trial.standard + "px")
+
+}
+var this_trial;
+start_trial();
+
+
+
+  </script>
