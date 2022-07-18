@@ -161,7 +161,8 @@ window.addEventListener("keydown", function(event) {
     "trial": 0,
     "standard": 2.55,
     "starting_comparison": -0.1
-  },
+  }
+  /*,
   {
     "trial": 1,
     "standard": 3.55,
@@ -477,16 +478,22 @@ window.addEventListener("keydown", function(event) {
     "standard": 4.55,
     "starting_comparison": 0.1
   }
+  */
 ];
 function start_trial(){
-  this_trial = data.pop();
-  $("#target_div")
-    .css("width", this_trial.standard + "px")
-    .css("height", this_trial.standard + "px");
-
-    $("#response_div")
-    .css("width", this_trial.standard + "px")
-    .css("height", this_trial.standard + "px")
+  if(data.length > 0){
+    this_trial = data.pop();
+    $("#target_div")
+      .css("width", this_trial.standard + "px")
+      .css("height", this_trial.standard + "px");
+  
+      $("#response_div")
+      .css("width", this_trial.standard + "px")
+      .css("height", this_trial.standard + "px")
+  
+  } else {
+    Phase.submit();
+  }
 
 }
 var this_trial;
