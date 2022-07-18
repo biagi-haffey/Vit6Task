@@ -138,14 +138,12 @@ window.addEventListener("keydown", function(event) {
       .css("width")
       .replace("px","")   
   );
-    console.log("Hi")
-    console.log("final_width");
-    console.log(final_width);
     response_array.push(final_width);
     Phase.add_response({
-      "final_width": final_width
+      "final_width": final_width,
+      "trial_width": this_trial.standard
     });
-    start_trial()
+    start_trial();
 	  }
 	  event.preventDefault();
 	}, true);
